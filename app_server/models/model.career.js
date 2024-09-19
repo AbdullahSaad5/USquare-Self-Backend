@@ -14,6 +14,7 @@ const careerSchema = new schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
+  
   body: {
     type: String,
   },

@@ -1,5 +1,5 @@
 // models/project.model.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define the Project Schema
@@ -8,28 +8,29 @@ const projectSchema = new Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 30
+    maxlength: 30,
   },
+  category: { type: String },
   link: {
     type: String,
-    required: true
+    required: true,
   },
   shortDescription: {
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 80
+    maxlength: 80,
   },
   detailedDescription: {
     type: String,
-    required: true
+    required: true,
   },
- 
+
   coverImage: {
     type: String, // URL or path to the image
-    required: true
+    required: true,
   },
-  
+
   blocked: {
     type: Boolean,
     default: false,
@@ -37,15 +38,15 @@ const projectSchema = new Schema({
 
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updatedAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 // Create the model
-const Project = mongoose.model('Project', projectSchema);
+const Project = mongoose.model("Project", projectSchema);
 
 module.exports = Project;

@@ -24,7 +24,7 @@ exports.createProject = async (req, res) => {
 // Get all projects
 exports.getAllProjects = async (req, res) => {
   try {
-    const projects = await Project.find().populate('category');
+    const projects = await Project.find()
     res.status(200).json(projects);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch projects. Please try again later.' });

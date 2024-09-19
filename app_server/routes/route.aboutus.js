@@ -27,14 +27,13 @@ router.get('/get_all', function (req, res) {
         }
     });
 });
-
-// Update AboutUs data
 router.patch('/update', function (req, res) {
     const aboutUsData = req.body;
-    aboutUsController.updateAboutUs(aboutUsData, function (err, result) {
+    const query = { _id: aboutUsData._id }; // Make sure you have an identifier
+    aboutUsController.updateAboutUs(query, aboutUsData, function (err, result) {
         if (err) {
-            console.log(err);
-            return res.json({
+            console.error('Error in Updating Data:', err);
+            return res.status(500).json({
                 message: 'Error in Updating Data',
                 status: false,
             });
@@ -47,6 +46,7 @@ router.patch('/update', function (req, res) {
         }
     });
 });
+
 
 // Add New AboutUs data
 router.post('/add', function (req, res) {
