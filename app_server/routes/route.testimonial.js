@@ -274,7 +274,7 @@ router.put("/block/:testimonialId", function (req, res) {
       });
     } else if (result) {
       return res.json({
-        message: "Testimonial blocked successfully",
+        message: "Testimonial blocked/unblocked successfully",
         status: true,
         data: result,
       });

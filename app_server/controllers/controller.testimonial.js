@@ -37,19 +37,31 @@ module.exports.getTestimonialsForLandingPage = (callback) => {
     .limit(5);
 };
 
-// Block a testimonial
-exports.blockTestimonial = function (testimonialId, callback) {
-  testimonial.findByIdAndUpdate(
-    testimonialId,
-    { blocked: true }, // Assuming you have a 'blocked' field
-    { new: true },
-    function (err, result) {
-      if (err) {
-        return callback(err, null);
-      }
-      return callback(null, result);
-    }
-  );
-};
 
+// Toggle the blocked status of a testimonial
+exports.blockTestimonial = function (testimonialId, callback) {
+  // Step 1: Find the testimonial by ID
+  testimonial.findById(testimonialId, function (err, testimonial) {
+    if (err) {
+      console.error("Error finding testimonial:", err);
+      return callback(err, null);
+    }
+    
+    if (!testimonial) {
+      return callback(new Error("Testimonial not found"), null);
+    }
+
+    // Step 2: Toggle the blocked status
+    testimonial.blocked = !testimonial.blocked; // Toggle the boolean value
+
+    // Step 3: Save the updated testimonial
+    testimonial.save(function (saveErr, updatedTestimonial) {
+      if (saveErr) {
+        console.error("Error saving testimonial:", saveErr);
+        return callback(saveErr, null);
+      }
+      return callback(null, updatedTestimonial); // Return the updated testimonial
+    });
+  });
+};
 
