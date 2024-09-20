@@ -7,7 +7,7 @@
     "dev": "nodemon app.js"
   },
   "engines": {
-    "node": "10.x"
+    "node": "16.x"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.5.5",
